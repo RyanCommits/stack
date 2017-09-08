@@ -1141,3 +1141,12 @@
   right: 2px;
   top: 2px;
 }
+
+.loginor {
+  color: #B33C12;
+}
+
+.loginemail {
+  color: #B33C12;
+  font-weight: bold;
+}

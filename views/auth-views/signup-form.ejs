@@ -5,20 +5,15 @@
                 <div class="row">
                     <div class="col-lg-4 offset-lg-4 col-sm-6 offset-sm-3">
                         <div class="card card-register">
-                            <h3 class="title">Welcome</h3>
-            <div class="social-line text-center">
-                                <a href="#pablo" class="btn btn-neutral btn-facebook btn-just-icon">
-                                    <i class="fa fa-facebook-square"></i>
-                                </a>
-                                <a href="#pablo" class="btn btn-neutral btn-google btn-just-icon">
-                                    <i class="fa fa-google-plus"></i>
-                                </a>
-              <a href="#pablo" class="btn btn-neutral btn-twitter btn-just-icon">
-                <i class="fa fa-twitter"></i>
-              </a>
-                            </div>
+                            <h3 class="title">Welcome To Stack</h3>
+                            <a href="/auth/facebook" class="btn btn-info btn-block btn-round">SIGN UP WITH FACEBOOK</a>
                             <form class="register-form" method="post" action="/process-signup">
+                                <div class="loginor text-center">
+                                  <p>or</p>
+                                  <p class="loginemail">Sign up with your email address</p>
+                                </div>
                                 <%if (typeof feedbackMessage !== 'undefined') {%>
+                                  <br />
                                   <p class="error">
                                     <%= feedbackMessage %>
                                   </p>
@@ -28,11 +23,11 @@
 
                                 <label for="password-input">Password</label>
                                 <input id="password-input" type="password" name="signupPassword" class="form-control" placeholder="Password">
-                                <button class="btn btn-danger btn-block btn-round">Register</button>
+                                <button class="btn btn-danger btn-block btn-round">SIGN UP</button>
                             </form>
-                            <%# <div class="forgot">
-                                <a href="#" class="btn btn-link btn-danger">Forgot password?</a>
-                            </div>%>
+                            <div class="forgot">
+                                Already have an account? <a href="/login" > Log In</a>
+                            </div>
                         </div>
                     </div>
                 </div>

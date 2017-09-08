@@ -8,6 +8,10 @@ Landing page Explaining app
 
 Log in... user auth.
 
+  need alerts
+
+  profile page with delete
+
 Access Card Stack
 
 Test with Card Stack
