@@ -11,9 +11,6 @@ const passport     = require('passport');
 const flash        = require('connect-flash');
 
 require('./config/passport-config.js');
-///////////////////
-// subject to change
-////////////////////
 
 mongoose.connect('mongodb://localhost/stack-users');
 
@@ -46,6 +43,16 @@ app.use(session(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+
+app.use((req, res, next) => {
+  if (req.user) {
+    res.locals.currentUser = req.user;
+  } else {
+    res.locals.currentUser = null;
+  }
+
+  next();
+});
 
 // Routes ------------------------------------------------
 const index = require('./routes/index');

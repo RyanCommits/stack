@@ -3,6 +3,7 @@ const UserModel = require('../models/user-model.js');
 const bcrypt = require('bcrypt');
 
 const LocalStrategy = require('passport-local').Strategy;
+const FbStrategy = require('passport-facebook').Strategy;
 
 passport.serializeUser((userFromDb, done) => {
   done(null, userFromDb._id);
@@ -22,6 +23,8 @@ passport.deserializeUser((idFromBowl, done) => {
     }
   );
 });
+
+// Email Login -----------------------------------------------
 
 passport.use(
   new LocalStrategy(
@@ -54,6 +57,49 @@ passport.use(
           }
 
           done(null, userFromDb);
+        }
+      );
+    }
+  )
+);
+
+// Facebook Login ----------------------------------------
+
+passport.use(
+  new FbStrategy(
+    {
+      clientID: '1144908295608624',
+      clientSecret: '0448da258ff13db99d2f9a62e2c22230',
+      callbackURL: '/auth/Facebook/callback'
+    },
+    (accessToken, refreshToken, profile, done) => {
+
+      UserModel.findOne(
+        { facebookID: profile.id },
+        (err, userFromDb) => {
+          if (err) {
+            done(err);
+            return;
+          }
+
+          if (userFromDb) {
+            done(null, userFromDb);
+            return;
+          }
+
+          const theUser = new UserModel({
+            facebookID: profile.id,
+            email: 'profile.displayName'
+          });
+
+          theUser.save((err) => {
+            if (err) {
+              done(err);
+              return;
+            }
+
+            done(null, theUser);
+          });
         }
       );
     }

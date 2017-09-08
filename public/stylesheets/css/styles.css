@@ -1133,3 +1133,11 @@
     position: relative;
     z-index: 2;
 }
+
+/*Ryan's Custom styling------------------*/
+
+.nc-button-power::before {
+  position: relative;
+  right: 2px;
+  top: 2px;
+}

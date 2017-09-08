@@ -5,6 +5,8 @@ const UserModel = require('../models/user-model.js');
 
 const router = express.Router();
 
+// signup ---------------------------------------------------
+
 router.get('/signup', (req, res, next) => {
   res.render('auth-views/signup-form.ejs');
 });
@@ -51,6 +53,8 @@ router.post('/process-signup', (req, res, next) => {
   );
 });
 
+// Log In ---------------------------------------------------
+
 router.get('/login', (req, res, next) => {
   res.locals.flashError = req.flash('error');
 
@@ -67,10 +71,24 @@ router.post('/process-login',
   })
 );
 
+// Log Out -------------------------------------------------
 
+router.get('/logout', (req, res, next) => {
+  req.logout();
 
+  req.flash('logoutSuccess', 'Log out successful.');
+  res.redirect('/login');
+});
 
+// Facebook login -------------------------------------------------
 
-
+router.get('/auth/facebook', passport.authenticate('facebook'));
+router.get('/auth/facebook/callback',
+  passport.authenticate('facebook', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: true
+  })
+);
 
 module.exports = router;
