@@ -51,4 +51,26 @@ router.post('/process-signup', (req, res, next) => {
   );
 });
 
+router.get('/login', (req, res, next) => {
+  res.locals.flashError = req.flash('error');
+
+  res.locals.logoutFeedback = req.flash('logoutSuccess');
+
+  res.render('auth-views/login-form.ejs');
+});
+
+router.post('/process-login',
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: true
+  })
+);
+
+
+
+
+
+
+
 module.exports = router;

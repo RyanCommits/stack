@@ -17,18 +17,17 @@
                 <i class="fa fa-twitter"></i>
               </a>
                             </div>
-                            <form class="register-form" method="post" action="/process-signup">
-                                <%if (typeof feedbackMessage !== 'undefined') {%>
-                                  <p class="error">
-                                    <%= feedbackMessage %>
-                                  </p>
+                            <form class="register-form" method="post" action="/process-login">
+                                <br />
+                                <%if (flashError.length > 0) {%>
+                                  <p class="error-message"> <%= flashError %> </p>
                                 <%}%>
                                 <label for="email-input">Email</label>
-                                <input id="email-input" type="text" name="signupEmail" class="form-control" placeholder="Email">
+                                <input id="email-input" type="text" name="loginEmail" class="form-control" placeholder="Email">
 
                                 <label for="password-input">Password</label>
-                                <input id="password-input" type="password" name="signupPassword" class="form-control" placeholder="Password">
-                                <button class="btn btn-danger btn-block btn-round">Register</button>
+                                <input id="password-input" type="password" name="loginPassword" class="form-control" placeholder="Password">
+                                <button class="btn btn-danger btn-block btn-round">Log In</button>
                             </form>
                             <%# <div class="forgot">
                                 <a href="#" class="btn btn-link btn-danger">Forgot password?</a>
