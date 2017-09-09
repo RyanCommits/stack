@@ -59,6 +59,8 @@ const index = require('./routes/index');
 app.use('/', index);
 const myAuthRoutes = require('./routes/auth-router.js');
 app.use(myAuthRoutes);
+const myDashRoutes = require('./routes/dashboard.js');
+app.use(myDashRoutes);
 
 // Routes End --------------------------------------------
 
