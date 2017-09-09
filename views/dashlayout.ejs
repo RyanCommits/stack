@@ -35,19 +35,24 @@
 
         	<div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="http://www.creative-tim.com" class="simple-text">
-                        Creative Tim
+                    <a href="/dashboard/home" class="simple-text">
+                        Stack
                     </a>
                 </div>
 
                 <ul class="nav">
                     <li class="active">
-                        <a href="dashboard.html">
+                        <a href="/dashboard/home">
                             <i class="ti-pie-chart"></i>
                             <p>Dashboard</p>
                         </a>
                     </li>
-
+                    <li>
+                        <a href="/dashboard/profile">
+                            <i class="ti-user"></i>
+                            <p>Profile</p>
+                        </a>
+                    </li>
                 </ul>
         	</div>
         </div>
@@ -62,7 +67,7 @@
                             <span class="icon-bar bar2"></span>
                             <span class="icon-bar bar3"></span>
                         </button>
-                        <a class="navbar-brand" href="#">Template</a>
+                        <a class="navbar-brand" href="#"><%=path.charAt(0).toUpperCase() + path.slice(1)%></a>
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
@@ -104,6 +109,8 @@
                 <div class="container-fluid">
                     <div class="row">
 
+                      <%- body %>
+
                     </div>
                 </div>
             </div>
@@ -121,8 +128,9 @@
                             </li>
                         </ul>
                     </nav>
+
     				<div class="copyright pull-right">
-                        &copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Creative Tim</a>
+                        &copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Ryan Wang</a>
                     </div>
                 </div>
             </footer>
