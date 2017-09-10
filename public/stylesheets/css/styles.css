@@ -1150,3 +1150,6 @@
   color: #B33C12;
   font-weight: bold;
 }
+.modal-backdrop {
+  z-index: 0;
+}

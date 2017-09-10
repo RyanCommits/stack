@@ -61,6 +61,8 @@ const myAuthRoutes = require('./routes/auth-router.js');
 app.use(myAuthRoutes);
 const myDashRoutes = require('./routes/dashboard.js');
 app.use(myDashRoutes);
+const myCardRoutes = require('./routes/card-router.js');
+app.use(myCardRoutes);
 
 // Routes End --------------------------------------------
 
