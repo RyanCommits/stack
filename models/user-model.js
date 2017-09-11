@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const StackModel = require('../models/stack-model.js');
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
@@ -13,7 +13,10 @@ const userSchema = new Schema(
 
     facebookID: { type: String },
 
-    googleID: { type: String }
+    googleID: { type: String },
+
+    stacks: [ StackModel.schema ]
+
   },
 
   {

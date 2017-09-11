@@ -3,16 +3,19 @@ const StackModel = require('../models/stack-model.js');
 
 const router = express.Router();
 
-router.post('/dashboard', (req, res, next) => {
+router.post('/dashboard/home', (req, res, next) => {
 
-  theUser.save((err) => {
+  const newStack = new StackModel({
+    stackName: req.body.newName
+  });
+
+  newStack.save((err) => {
     if (err) {
       next(err);
       return;
     }
-    req.flash('signupSuccess', 'Sign up successful! Try logging in.');
 
-    res.redirect('/');
+    res.redirect('/dashboard/home');
   });
 
 });

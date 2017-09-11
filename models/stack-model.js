@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const stackSchema = new Schema(
-  {
+const stackSchema = new Schema({
     stackName: {
       type: String,
       required: true
@@ -12,7 +11,11 @@ const stackSchema = new Schema(
     cards: [{
       cardFront: String,
       cardBack: String
-    }]
+    }],
+
+    user: {
+      type: Schema.Types.ObjectId
+    },
   },
 
   {
