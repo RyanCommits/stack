@@ -1,0 +1,54 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-7">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Card List</h4>
+                    </div>
+                    <div class="content">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-hover">
+                                      <thead>
+                                        <tr>
+                                          <th>#</th>
+                                          <th>Front</th>
+                                          <th>Back</th>
+                                          <th>Edit Card</th>
+                                          <th>Delete</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <% singleStack.cards.forEach((oneCard, index) => { %>
+                                          <tr>
+                                            <th scope="row"><%= index + 1 %></th>
+                                            <td><%= oneCard.cardFront %></td>
+                                            <td><%= oneCard.cardBack %></td>
+                                            <td>
+                                              <button href="#">Edit Card</button>
+                                            </td>
+                                            <td>
+                                              <form method="post" action="#">
+                                                <button class="btn btn-danger btn-sm">Delete</button>
+                                              </form>
+                                            </td>
+                                          </tr>
+                                        <% }) %>
+                                      </tbody>
+                                    </table>
+                                </div>
+                                <div class="text-center">
+                                  <button type="button" class="btn btn-primary btn-default" data-toggle="modal" data-target="#newStack">
+                                    Add Card
+                                  </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+          </div>
+      </div>
+  </div>

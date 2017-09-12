@@ -27,9 +27,7 @@
                                               <td><%= oneStack.stackName %></td>
                                               <td><%= oneStack.cards.length %></td>
                                               <td>
-                                                <form method="post" action="/dashboard/<%= oneStack._id %>/delete">
-                                                  <button class="btn btn-danger btn-sm">Edit Stack</button>
-                                                </form>
+                                                <a href="/dashboard/<%= oneStack._id %>/" class="btn btn-success">Edit Stack</button>
                                               </td>
                                               <td>
                                                 <form method="post" action="/dashboard/home/<%= oneStack._id %>/delete">
