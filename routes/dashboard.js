@@ -33,9 +33,4 @@ router.get('/dashboard/profile', (req, res, next) => {
   res.render('dash-views/profile.ejs', { layout: 'dashlayout.ejs' });
 });
 
-router.get('/dashboard/new-stack', (req, res, next) => {
-  res.locals.path = 'New Stack';
-  res.render('dash-views/new.ejs', { layout: 'dashlayout.ejs' });
-});
-
 module.exports = router;

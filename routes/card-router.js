@@ -20,4 +20,19 @@ router.post('/dashboard/home', (req, res, next) => {
 
 });
 
+router.post('/dashboard/home/:stackId/delete', (req, res, next) => {
+    StackModel.findByIdAndRemove(
+      req.params.stackId,
+
+      (err, stackInfo) => {
+          if (err) {
+              next(err);
+              return;
+          }
+
+          res.redirect('/dashboard/home');
+      }
+    );
+});
+
 module.exports = router;

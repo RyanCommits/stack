@@ -16,6 +16,7 @@
                                           <th>#</th>
                                           <th>Stack Name</th>
                                           <th>Cards</th>
+                                          <th>Add/Edit Cards</th>
                                           <th>Delete</th>
                                         </tr>
                                       </thead>
@@ -25,13 +26,22 @@
                                               <th scope="row"><%= index + 1 %></th>
                                               <td><%= oneStack.stackName %></td>
                                               <td><%= oneStack.cards.length %></td>
-                                              <td><button type="button" class="btn btn-danger btn-sm">Delete</button></td>
+                                              <td>
+                                                <form method="post" action="/dashboard/<%= oneStack._id %>/delete">
+                                                  <button class="btn btn-danger btn-sm">Edit Stack</button>
+                                                </form>
+                                              </td>
+                                              <td>
+                                                <form method="post" action="/dashboard/home/<%= oneStack._id %>/delete">
+                                                  <button class="btn btn-danger btn-sm">Delete</button>
+                                                </form>
+                                              </td>
                                             </tr>
                                           <% }) %>
                                       </tbody>
                                     </table>
                                 </div>
-                                <div class="col-md-3 col-md-offset-9">
+                                <div class="text-center">
                                   <button type="button" class="btn btn-primary btn-default" data-toggle="modal" data-target="#newStack">
                                     Create Stack
                                   </button>

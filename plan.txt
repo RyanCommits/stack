@@ -4,14 +4,13 @@ Flash cards that show based on spaced repetition, algorthim: SuperMemo https://w
 
 User Flow:
 
-Landing page Explaining app
-
-Log in... user auth.
 
   need alerts
 
   profile page with delete
 
 Access Card Stack
-
+  be able to show specific stack of unique user
+  add cards to stack
+  
 Test with Card Stack
