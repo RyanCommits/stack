@@ -8,15 +8,15 @@ router.get('/dashboard/', (req, res, next) => {
 
 router.get('/dashboard/home', (req, res, next) => {
 
-  // find the products in the database
-  StackModel.find((err, stackList) => {
-      // if there's a database error...
-      if (err) {
-          // skip to the error handler middleware
-          next(err);
-          // return to avoid showing the view
-          return;
+  StackModel.find(
 
+    { user: req.user._id },
+
+    (err, stackList) => {
+
+      if (err) {
+          next(err);
+          return;
       }
 
       // send the results to the view

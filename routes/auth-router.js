@@ -47,7 +47,7 @@ router.post('/process-signup', (req, res, next) => {
         }
         req.flash('signupSuccess', 'Sign up successful! Try logging in.');
 
-        res.redirect('/dashboard/home');
+        res.redirect('/');
       });
     }
   );
