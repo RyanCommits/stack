@@ -1153,3 +1153,6 @@
 .modal-backdrop {
   z-index: 0;
 }
+.form-control {
+  border: 1px solid #ccc;
+}

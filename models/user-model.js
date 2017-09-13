@@ -15,8 +15,6 @@ const userSchema = new Schema(
 
     googleID: { type: String },
 
-    stacks: [ StackModel.schema ]
-
   },
 
   {

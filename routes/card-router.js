@@ -64,4 +64,27 @@ router.get('/dashboard/:stackId', (req, res, next) => {
     });
 });
 
+// Add Card ----------------------------------------------------------------
+
+router.post('/dashboard/:stackId', (req, res, next) => {
+
+  const currentStack = req.params.stackId;
+
+  StackModel.findByIdAndUpdate(
+    currentStack,
+
+    {$push:
+      {"cards": {cardFront: req.body.cardFront, cardBack: req.body.cardBack}}},
+
+    (err, oneStack) => {
+
+      if (err) {
+          next(err);
+          return;
+      }
+
+    res.redirect('/dashboard/' + currentStack);
+  });
+});
+
 module.exports = router;
