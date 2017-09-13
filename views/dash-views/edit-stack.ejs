@@ -26,7 +26,7 @@
                                         <td><%= oneCard.cardFront %></td>
                                         <td><%= oneCard.cardBack %></td>
                                         <td>
-                                          <button href="/dashboard/<%= oneCard._id %>/">Edit Card</button>
+                                          <button type="button" data-toggle="modal" data-target="#editCard" class="btn btn-success">Edit Card</button>
                                         </td>
                                         <td>
                                           <form method="post" action="/dashboard/<%= singleStack._id %>/<%= oneCard._id %>/delete">
@@ -59,6 +59,32 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">New Card</h4>
+      </div>
+      <form method="post" action="/dashboard/<%=singleStack._id%>">
+        <div class="modal-body">
+          <label for="frontLabel">Card Front</label>
+          <textarea id="frontLabel" name="cardFront" class="form-control" rows="5"></textarea>
+          <br />
+          <label for="backLabel">Card Back</label>
+          <textarea id="backLabel" name="cardBack" class="form-control" rows="5"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Add Card</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<%# Edit Card Modal -----------------------------------------%>
+
+<div class="modal fade" id="editCard" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Edit Card</h4>
       </div>
       <form method="post" action="/dashboard/<%=singleStack._id%>">
         <div class="modal-body">

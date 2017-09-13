@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const CardModel = require('../models/card-model.js');
 const Schema = mongoose.Schema;
 
 const stackSchema = new Schema({
@@ -8,10 +8,7 @@ const stackSchema = new Schema({
       required: true
     },
 
-    cards: [{
-      cardFront: String,
-      cardBack: String
-    }],
+    cards: [ CardModel.schema ],
 
     user: {
       type: Schema.Types.ObjectId,
