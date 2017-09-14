@@ -96,7 +96,7 @@ router.post('/dashboard/:stackId', (req, res, next) => {
       }
 
     res.redirect('/dashboard/' + currentStack);
-    
+
     });
   });
 });
@@ -123,32 +123,33 @@ router.post('/dashboard/:stackId/:cardId/delete', (req, res, next) => {
 
 // Edit Card ----------------------------------------------------------------
 
-// router.post('/dashboard/:stackId/:cardId/edit', (req, res, next) => {
-//
-//     StackModel.update(
-//       { _id: req.params.stackId,
-//         cards: {
-//           cardFront: "old",
-//           cardBack:  "oldback"
-//         }
-//       },
-//       { $set: { cards: { cardFront:req.params.cardId },
-//         cards.$.cardFront: 'super',
-//         cards.$.cardBack: 'new definition'
-//       (err, oneStack) => {
-//         // if there's a database error...
-//         if (err) {
-//             // skip to the error handler middleware
-//             next(err);
-//             // return to avoid showing the view
-//             return;
-//
-//         }
-//
-//         // send the results to the view
-//         res.locals.singleStack = oneStack;
-//         res.locals.path = oneStack.stackName;
-//
-//         res.render('dash-views/edit-stack.ejs', { layout: 'dashlayout.ejs' });
-//     });
-// });
+router.post('/dashboard/:stackId/:cardId/edit', (req, res, next) => {
+
+    StackModel.updateOne(
+      {
+        _id: req.params.stackId,
+        "cards._id": req.params.cardId
+      },
+
+      {
+        $set: {
+          'cards.$.cardFront': req.body.cardFront,
+          'cards.$.cardBack': req.body.cardBack
+          }
+        },
+
+      (err, oneStack) => {
+        // if there's a database error...
+        if (err) {
+            // skip to the error handler middleware
+            next(err);
+            // return to avoid showing the view
+            return;
+
+        }
+
+        res.redirect('/dashboard/' + req.params.stackId);
+
+        res.render('dash-views/edit-stack.ejs', { layout: 'dashlayout.ejs' });
+    });
+});

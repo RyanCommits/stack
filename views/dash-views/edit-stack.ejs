@@ -21,12 +21,12 @@
                                   </thead>
                                   <tbody>
                                     <% singleStack.cards.forEach((oneCard, index) => { %>
-                                      <tr>
+                                      <tr class="frontback">
                                         <th scope="row"><%= index + 1 %></th>
                                         <td><%= oneCard.cardFront %></td>
                                         <td><%= oneCard.cardBack %></td>
                                         <td>
-                                          <button type="button" data-toggle="modal" data-target="#editCard" class="btn btn-success">Edit Card</button>
+                                          <button type="button" data-toggle="modal" data-target="#editCard" class="btn btn-success edit-button">Edit Card</button>
                                         </td>
                                         <td>
                                           <form method="post" action="/dashboard/<%= singleStack._id %>/<%= oneCard._id %>/delete">
@@ -86,7 +86,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Edit Card</h4>
       </div>
-      <form method="post" action="/dashboard/<%=singleStack._id%>">
+      <form method="post" action="/dashboard/<%=singleStack._id%>/edit">
         <div class="modal-body">
           <label for="frontLabel">Card Front</label>
           <textarea id="frontLabel" name="cardFront" class="form-control" rows="5"></textarea>
