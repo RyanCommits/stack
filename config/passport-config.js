@@ -68,8 +68,8 @@ passport.use(
 passport.use(
   new FbStrategy(
     {
-      clientID: '1144908295608624',
-      clientSecret: '0448da258ff13db99d2f9a62e2c22230',
+      clientID: process.env.fb_app_id,
+      clientSecret: process.env.fb_app_secret,
       callbackURL: '/auth/Facebook/callback'
     },
     (accessToken, refreshToken, profile, done) => {
