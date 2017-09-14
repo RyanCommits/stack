@@ -1,12 +1,13 @@
 const express = require('express');
 const StackModel = require('../models/stack-model.js');
+const ensureLogin = require("connect-ensure-login");
 const router  = express.Router();
 
 router.get('/dashboard/', (req, res, next) => {
   res.redirect('/dashboard/home');
 });
 
-router.get('/dashboard/home', (req, res, next) => {
+router.get('/dashboard/home', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
 
   StackModel.find(
 
@@ -28,7 +29,7 @@ router.get('/dashboard/home', (req, res, next) => {
   });
 });
 
-router.get('/dashboard/profile', (req, res, next) => {
+router.get('/dashboard/profile', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
   res.locals.path = 'Profile';
   res.render('dash-views/profile.ejs', { layout: 'dashlayout.ejs' });
 });

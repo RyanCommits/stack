@@ -1,6 +1,7 @@
 const express = require('express');
 const StackModel = require('../models/stack-model.js');
 const CardModel = require('../models/card-model.js');
+const ensureLogin = require("connect-ensure-login");
 
 const router = express.Router();
 
@@ -24,7 +25,7 @@ router.post('/dashboard/home', (req, res, next) => {
 
 // Delete stack --------------------------------------------------------------
 
-router.post('/dashboard/:stackId/delete', (req, res, next) => {
+router.post('/dashboard/:stackId/delete', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
     StackModel.findByIdAndRemove(
       req.params.stackId,
 
@@ -41,7 +42,7 @@ router.post('/dashboard/:stackId/delete', (req, res, next) => {
 
 // Edit stack path --------------------------------------------------------
 
-router.get('/dashboard/:stackId', (req, res, next) => {
+router.get('/dashboard/:stackId', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
 
   const currentStack = req.params.stackId;
 
@@ -68,7 +69,7 @@ router.get('/dashboard/:stackId', (req, res, next) => {
 
 // Add Card ----------------------------------------------------------------
 
-router.post('/dashboard/:stackId', (req, res, next) => {
+router.post('/dashboard/:stackId', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
 
   const currentStack = req.params.stackId;
 
@@ -105,7 +106,7 @@ module.exports = router;
 
 // Delete Card --------------------------------------------------------------
 
-router.post('/dashboard/:stackId/:cardId/delete', (req, res, next) => {
+router.post('/dashboard/:stackId/:cardId/delete', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
     StackModel.update(
       { },
       { $pull: { cards: { _id: req.params.cardId } } },
@@ -123,7 +124,7 @@ router.post('/dashboard/:stackId/:cardId/delete', (req, res, next) => {
 
 // Edit Card ----------------------------------------------------------------
 
-router.post('/dashboard/:stackId/:cardId/edit', (req, res, next) => {
+router.post('/dashboard/:stackId/:cardId/edit', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
 
     StackModel.updateOne(
       {
