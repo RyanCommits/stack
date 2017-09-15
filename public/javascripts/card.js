@@ -62,3 +62,15 @@ $(document).ready(function () {
       $('.cardCount').text(`${i+1} out of ${testPageDetect}`);
       }
 });
+
+// Set privacy setting
+
+$(document).ready(function () {
+  $('.sharedSetting').click(function () {
+    $(this).parent().submit();
+  });
+
+  $('.privateSetting').click(function () {
+    $(this).parent().submit();
+  });
+});

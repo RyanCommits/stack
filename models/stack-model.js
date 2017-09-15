@@ -14,6 +14,12 @@ const stackSchema = new Schema({
       type: Schema.Types.ObjectId,
       required: true
     },
+
+    shared: {
+      type: String,
+      enum: [ 'true', 'false' ],
+      default: 'false'
+    }
   },
 
   {

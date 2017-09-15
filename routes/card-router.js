@@ -18,7 +18,7 @@ router.post('/dashboard/home', (req, res, next) => {
       return;
     }
 
-    res.redirect('/dashboard/home');
+    res.redirect('/dashboard/my-stacks');
   });
 
 });
@@ -35,14 +35,60 @@ router.post('/dashboard/:stackId/delete', ensureLogin.ensureLoggedIn('/login'), 
               return;
           }
 
-          res.redirect('/dashboard/home');
+          res.redirect('/dashboard/my-stacks');
+      }
+    );
+});
+
+// Stack privacy: shared--------------------------------------------------------------
+
+router.post('/dashboard/:stackId/shared', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
+    StackModel.updateOne(
+      req.params.stackId,
+
+      {
+        $set: {
+          'shared': 'true'
+          }
+        },
+
+      (err, stackInfo) => {
+          if (err) {
+              next(err);
+              return;
+          }
+
+          res.redirect('/dashboard/my-stacks');
+      }
+    );
+});
+
+// Stack privacy: private--------------------------------------------------------------
+
+router.post('/dashboard/:stackId/private', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
+    StackModel.updateOne(
+      req.params.stackId,
+
+      {
+        $set: {
+          'shared': 'false'
+          }
+        },
+
+      (err, stackInfo) => {
+          if (err) {
+              next(err);
+              return;
+          }
+
+          res.redirect('/dashboard/my-stacks');
       }
     );
 });
 
 // Edit stack path --------------------------------------------------------
 
-router.get('/dashboard/:stackId', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
+router.get('/dashboard/my-stacks/:stackId', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
 
   const currentStack = req.params.stackId;
 
@@ -96,7 +142,7 @@ router.post('/dashboard/:stackId', ensureLogin.ensureLoggedIn('/login'), (req, r
         return;
       }
 
-    res.redirect('/dashboard/' + currentStack);
+    res.redirect('/dashboard/my-stacks/' + currentStack);
 
     });
   });
@@ -117,7 +163,7 @@ router.post('/dashboard/:stackId/:cardId/delete', ensureLogin.ensureLoggedIn('/l
               return;
           }
 
-          res.redirect('/dashboard/' + req.params.stackId);
+          res.redirect('/dashboard/my-stacks/' + req.params.stackId);
       }
     );
 });
@@ -149,7 +195,7 @@ router.post('/dashboard/:stackId/:cardId/edit', ensureLogin.ensureLoggedIn('/log
 
         }
 
-        res.redirect('/dashboard/' + req.params.stackId);
+        res.redirect('/dashboard/my-stacks/' + req.params.stackId);
 
         res.render('dash-views/edit-stack.ejs', { layout: 'dashlayout.ejs' });
     });

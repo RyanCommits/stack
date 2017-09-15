@@ -8,6 +8,10 @@ router.get('/dashboard/', (req, res, next) => {
 });
 
 router.get('/dashboard/home', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
+  res.render('dash-views/dashboard.ejs', { layout: 'dashlayout.ejs' });
+});
+
+router.get('/dashboard/my-stacks', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
 
   StackModel.find(
 
@@ -23,9 +27,9 @@ router.get('/dashboard/home', ensureLogin.ensureLoggedIn('/login'), (req, res, n
       // send the results to the view
       res.locals.allStacks = stackList;
 
-      res.locals.path = 'Dashboard';
+      res.locals.path = 'My Stacks';
 
-      res.render('dash-views/dashboard.ejs', { layout: 'dashlayout.ejs' });
+      res.render('dash-views/my-stacks.ejs', { layout: 'dashlayout.ejs' });
   });
 });
 
@@ -34,7 +38,7 @@ router.get('/dashboard/profile', ensureLogin.ensureLoggedIn('/login'), (req, res
   res.render('dash-views/profile.ejs', { layout: 'dashlayout.ejs' });
 });
 
-router.get('/dashboard/:stackId/test', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
+router.get('/dashboard/my-stacks/:stackId/test', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
 
   const currentStack = req.params.stackId;
 
@@ -51,10 +55,33 @@ router.get('/dashboard/:stackId/test', ensureLogin.ensureLoggedIn('/login'), (re
 
         }
 
-    res.locals.singleStack = oneStack;    
+    res.locals.singleStack = oneStack;
     res.locals.path = oneStack.stackName;
 
     res.render('dash-views/test.ejs', { layout: 'dashlayout.ejs' });
+
+  });
+});
+
+router.get('/dashboard/public-stacks', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
+
+  StackModel.find(
+
+    { shared: 'true' },
+
+    (err, stackList) => {
+
+      if (err) {
+          next(err);
+          return;
+      }
+
+      // send the results to the view
+      res.locals.allStacks = stackList;
+
+      res.locals.path = 'Public Stacks';
+
+      res.render('dash-views/public-stacks.ejs', { layout: 'dashlayout.ejs' });
 
   });
 });
