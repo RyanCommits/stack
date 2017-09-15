@@ -1156,3 +1156,43 @@
 .form-control {
   border: 1px solid #ccc;
 }
+.card .ct-chart {
+  height: 473px;
+}
+.testbtn {
+  margin: 10px;
+}
+
+/* Card styles */
+
+.prompt, .promptText, .endTestTop {
+  font-size: 30px;
+  height: 150px;
+}
+.answer, .answerText, .endTest{
+  font-size: 20px;
+  height: 250px;
+}
+.answerText, .endTest{
+  display: none;
+}
+.prompt, .answer, .endTestTop {
+  display: none;
+}
+hr {
+  margin-bottom: 0px;
+}
+.restartBtn{
+  position: relative;
+  margin-left: 10px;
+  bottom: 1px;
+}
+.cardVisible {
+  display: block;
+}
+.endVisible {
+  display: block;
+}
+.hide{
+  display: none;
+}

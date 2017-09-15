@@ -4,13 +4,8 @@ Flash cards that show based on spaced repetition, algorthim: SuperMemo https://w
 
 User Flow:
 
+Due function that changes time with each response.
 
-  need alerts
+Add username to each user. Or first name.
 
-  profile page with delete
-
-Access Card Stack
-  be able to show specific stack of unique user
-  add cards to stack
-  
-Test with Card Stack
+Public stacks and all stacks

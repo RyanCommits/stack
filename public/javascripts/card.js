@@ -16,3 +16,49 @@ $(document).ready(function () {
 
   });
 });
+
+// Populates test cards one by one
+
+$(document).ready(function () {
+
+  const testPageDetect = $('.prompt').length;
+  let i = 0;
+
+  if (testPageDetect !== 0) {
+
+      $(`.prompt${i}`).addClass('cardVisible');
+      $(`.answer${i}`).addClass('cardVisible');
+
+      // answer button function
+
+      $('.answerbtn').click(function () {
+        $(`.answerbtn`).eq(i).addClass('hide');
+        $(`.answerText`).eq(i).addClass('cardVisible');
+      });
+
+      // progression button
+
+      $('.testbtn').click(function () {
+
+        $(`.prompt${i}`).removeClass('cardVisible');
+        $(`.answer${i}`).removeClass('cardVisible');
+
+// checks for end of test
+
+        if(testPageDetect === i + 1) {
+            $('.endTestTop').addClass('endVisible');
+            $('.endTest').addClass('endVisible');
+          return;
+        }
+
+        i++;
+        $(`.prompt${i}`).addClass('cardVisible');
+        $(`.answer${i}`).addClass('cardVisible');
+        $('.cardCount').text(`${i+1} out of ${testPageDetect}`);
+      });
+
+// Tracks test progress ex: (1 out of 50 cards)
+
+      $('.cardCount').text(`${i+1} out of ${testPageDetect}`);
+      }
+});

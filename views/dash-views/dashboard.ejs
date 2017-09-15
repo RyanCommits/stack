@@ -27,10 +27,10 @@
                                           <td><%= oneStack.stackName %></td>
                                           <td><%= oneStack.cards.length %></td>
                                           <td>
-                                           <a href="#" class="btn btn-primary">Begin Test</button>
+                                           <a href="/dashboard/<%= oneStack._id %>/test" class="btn btn-primary beginTest">Begin Test</a>
                                           </td>
                                           <td>
-                                            <a href="/dashboard/<%= oneStack._id %>/" class="btn btn-success">Edit Stack</button>
+                                            <a href="/dashboard/<%= oneStack._id %>/" class="btn btn-success">Edit Stack</a>
                                           </td>
                                           <td>
                                             <form method="post" action="/dashboard/<%=oneStack._id %>/delete">

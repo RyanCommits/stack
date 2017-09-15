@@ -34,4 +34,29 @@ router.get('/dashboard/profile', ensureLogin.ensureLoggedIn('/login'), (req, res
   res.render('dash-views/profile.ejs', { layout: 'dashlayout.ejs' });
 });
 
+router.get('/dashboard/:stackId/test', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
+
+  const currentStack = req.params.stackId;
+
+    StackModel.findById(
+      currentStack,
+
+      (err, oneStack) => {
+        // if there's a database error...
+        if (err) {
+            // skip to the error handler middleware
+            next(err);
+            // return to avoid showing the view
+            return;
+
+        }
+
+    res.locals.singleStack = oneStack;    
+    res.locals.path = oneStack.stackName;
+
+    res.render('dash-views/test.ejs', { layout: 'dashlayout.ejs' });
+
+  });
+});
+
 module.exports = router;

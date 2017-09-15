@@ -1,0 +1,45 @@
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header text-center">
+                        <h4 class="title"><%=path.charAt(0).toUpperCase() + path.slice(1)%></h4>
+                        <hr />
+                    </div>
+                    <div class="content text-center">
+                        <div id="chartHours" class="ct-chart">
+                        <% singleStack.cards.forEach((oneCard, index) =>
+                      { %>
+                          <div class="prompt prompt<%=index%>">
+                            <p class="promptText"><%= oneCard.cardFront %></p>
+                          </div>
+                          <div class="answer answer<%=index%>">
+                            <button class="btn btn-primary btn-lg answerbtn">Show Answer</button>
+                            <p class="answerText"><%= oneCard.cardBack %></p>
+                          </div>
+                        <% }) %>
+                          <div class="endTestTop">
+                            <h3>Finish!</h3>
+                          </div>
+                          <div class="endTest">
+                            <a href="/dashboard/home" class="btn btn-primary btn-lg"><i class="ti-back-left"></i><span class="restartBtn">Dashboard</span></a>
+                            <button onClick="window.location.reload()" class="btn btn-success btn-lg"><i class="ti-reload"></i><span class="restartBtn">Restart</span></button>
+                          </div>
+                        <div class="footer text-center cardFooter">
+                            <div class="chart-legend">
+                                <button class="btn btn-success btn-md testbtn">Easy</button>
+                                <button class="btn btn-warning btn-md testbtn">Medium</button>
+                                <button class="btn btn-danger btn-md testbtn">Hard</button>
+                            </div>
+                            <hr>
+                            <div class="stats">
+                                <i class="ti-reload"></i> <span class="cardCount">1 out of 50</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+  </div>
