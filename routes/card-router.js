@@ -148,8 +148,6 @@ router.post('/dashboard/:stackId', ensureLogin.ensureLoggedIn('/login'), (req, r
   });
 });
 
-module.exports = router;
-
 // Delete Card --------------------------------------------------------------
 
 router.post('/dashboard/:stackId/:cardId/delete', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
@@ -200,3 +198,5 @@ router.post('/dashboard/:stackId/:cardId/edit', ensureLogin.ensureLoggedIn('/log
         res.render('dash-views/edit-stack.ejs', { layout: 'dashlayout.ejs' });
     });
 });
+
+module.exports = router;

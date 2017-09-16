@@ -65,6 +65,8 @@ const myDashRoutes = require('./routes/dashboard.js');
 app.use(myDashRoutes);
 const myCardRoutes = require('./routes/card-router.js');
 app.use(myCardRoutes);
+const mySupermemoRoutes = require('./routes/supermemo-router.js');
+app.use(mySupermemoRoutes);
 
 // Routes End --------------------------------------------
 

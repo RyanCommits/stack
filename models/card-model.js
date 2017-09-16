@@ -11,6 +11,20 @@ const cardSchema = new Schema({
       type: Schema.Types.ObjectId,
       required: true
     },
+
+    ef: {
+      type: Number,
+      default: 2.5
+    },
+    interval: {
+      type: Number,
+      default: 1
+    } ,
+    date: {
+      type: Date,
+      default: 3
+    }
+
   },
 
   {

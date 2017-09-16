@@ -48,6 +48,8 @@ $(document).ready(function () {
         if(testPageDetect === i + 1) {
             $('.endTestTop').addClass('endVisible');
             $('.endTest').addClass('endVisible');
+            $('.cardFooter').addClass('hide');
+            $('.ct-chart').addClass('hide');
           return;
         }
 
