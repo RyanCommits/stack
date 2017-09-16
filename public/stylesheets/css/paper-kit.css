@@ -485,16 +485,16 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 }
 
 .btn-info {
-  background-color: #51bcda;
-  border-color: #51bcda;
+  background-color: #3B5998;
+  border-color: #3B5998;
   color: #FFFFFF;
   opacity: 1;
   filter: alpha(opacity=100);
 }
 .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .show > .btn-info.dropdown-toggle {
-  background-color: #2ba9cd;
+  background-color: #546999;
   color: #FFFFFF;
-  border-color: #2ba9cd;
+  border-color: #546999;
 }
 .btn-info .caret {
   border-top-color: #FFFFFF;
@@ -543,16 +543,16 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 }
 
 .btn-danger {
-  background-color: #f5593d;
-  border-color: #f5593d;
+  background-color: #C48C7B;
+  border-color: #C48C7B;
   color: #FFFFFF;
   opacity: 1;
   filter: alpha(opacity=100);
 }
 .btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active, .show > .btn-danger.dropdown-toggle {
-  background-color: #f33816;
+  background-color: #C4745C;
   color: #FFFFFF;
-  border-color: #f33816;
+  border-color: #C4745C;
 }
 .btn-danger .caret {
   border-top-color: #FFFFFF;
@@ -2653,7 +2653,7 @@ textarea.form-control {
 }
 
 .card-register {
-  background-color: #FF8F5E;
+  background-color: #D6D144;
   border-radius: 8px;
   color: #fff;
   max-width: 350px;
@@ -2675,12 +2675,14 @@ textarea.form-control {
 }
 
 .card-register .title {
-  color: #B33C12;
+  color: #39332f;
   text-align: center;
 }
 
 .card-register .btn {
   margin-top: 30px;
+  background-color: #39332f;
+  border-color: #39332f;
 }
 
 .card-register .forgot {

@@ -1,17 +1,17 @@
 /*!
-    
+
  =========================================================
  * Paper Dashboard - v1.1.2
  =========================================================
- 
+
  * Product Page: http://www.creative-tim.com/product/paper-dashboard
  * Copyright 2017 Creative Tim (http://www.creative-tim.com)
  * Licensed under MIT (https://github.com/creativetimofficial/paper-dashboard/blob/master/LICENSE.md)
- 
+
  =========================================================
- 
+
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- 
+
  */
 /*      light colors - used for select dropdown         */
 .ct-blue {
@@ -219,6 +219,7 @@ hr {
   background-position: center center; }
   .sidebar .sidebar-wrapper {
     position: relative;
+    background-color: #37302D;
     max-height: none;
     min-height: 100%;
     overflow: hidden;
@@ -298,6 +299,7 @@ hr {
         top: 8px; }
     .sidebar .nav p,
     .off-canvas-sidebar .nav p {
+      color: white;
       margin: 0;
       line-height: 30px;
       font-size: 12px;
@@ -340,11 +342,11 @@ hr {
     .sidebar .logo .simple-text, .sidebar[data-background-color="white"] .logo .simple-text,
     .off-canvas-sidebar .logo .simple-text,
     .off-canvas-sidebar[data-background-color="white"] .logo .simple-text {
-      color: #66615B; }
+      color: white; }
   .sidebar .nav li:not(.active) > a, .sidebar[data-background-color="white"] .nav li:not(.active) > a,
   .off-canvas-sidebar .nav li:not(.active) > a,
   .off-canvas-sidebar[data-background-color="white"] .nav li:not(.active) > a {
-    color: #66615B; }
+    color: #D6D144; }
   .sidebar .nav .divider, .sidebar[data-background-color="white"] .nav .divider,
   .off-canvas-sidebar .nav .divider,
   .off-canvas-sidebar[data-background-color="white"] .nav .divider {
