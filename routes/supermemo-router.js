@@ -2,10 +2,13 @@ const express = require('express');
 const StackModel = require('../models/stack-model.js');
 const CardModel = require('../models/card-model.js');
 const ensureLogin = require("connect-ensure-login");
+const superMemo = require('../lib/supermemo.js');
 
 const router = express.Router();
 
 router.post('/dashboard/my-stacks/:stackId/test', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
+
+superMemo.getInterval();
 
   StackModel.findById(req.params.stackId,
 
@@ -18,11 +21,24 @@ router.post('/dashboard/my-stacks/:stackId/test', ensureLogin.ensureLoggedIn('/l
   req.body.difficulty.forEach(function(formCard) {
       let eachCardId = formCard.cardId;
       let eqScore = formCard.score;
-      
+
 
       stackInfo.cards.forEach(function(card) {
         if (card._id.toString() === eachCardId) {
-          card.ef = eqScore;
+
+          var newEf = superMemo.getEf(card.ef, eqScore);
+          card.ef = newEf;
+
+          var newMemo = superMemo.getInterval(newEf, card.interval, card.nth, eqScore);
+
+          card.nth = newMemo.n;
+          card.dueToday = newMemo.dueToday;
+          card.interval = newMemo.int;
+
+          const now = new Date();
+          const due = new Date().setDate(now.getDate() + newMemo.int);
+
+          card.dueDate = new Date(due);
         }
       });
   });

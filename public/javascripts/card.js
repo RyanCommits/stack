@@ -21,6 +21,10 @@ $(document).ready(function () {
 // User submits their difficulty recalling answers, saves to backend
 
 $(document).ready(function () {
+  $('.testbtn0').click(function () {
+    $(this).closest('.inputContainer').find('.difficultyInput').val(0);
+  });
+
   $('.testbtn1').click(function () {
     $(this).closest('.inputContainer').find('.difficultyInput').val(1);
   });
@@ -28,9 +32,16 @@ $(document).ready(function () {
   $('.testbtn2').click(function () {
     $(this).closest('.inputContainer').find('.difficultyInput').val(2);
   });
-
   $('.testbtn3').click(function () {
     $(this).closest('.inputContainer').find('.difficultyInput').val(3);
+  });
+
+  $('.testbtn4').click(function () {
+    $(this).closest('.inputContainer').find('.difficultyInput').val(4);
+  });
+
+  $('.testbtn5').click(function () {
+    $(this).closest('.inputContainer').find('.difficultyInput').val(5);
   });
 });
 

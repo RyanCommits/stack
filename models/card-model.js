@@ -20,10 +20,18 @@ const cardSchema = new Schema({
       type: Number,
       default: 1
     } ,
-    date: {
-      type: Date,
-      default: 3
+    dueDate: {
+      type: Date
+    },
+    nth: {
+      type: Number,
+      default: 1
+    },
+    dueToday: {
+      type: Boolean,
+      default: true
     }
+
 
   },
 

@@ -16,14 +16,14 @@
                               <p class="promptText"><%= oneCard.cardFront %></p>
                             </div>
                             <div class="answer answer<%=index%>">
-                              <button class="btn btn-primary btn-lg answerbtn">Show Answer</button>
+                              <a class="btn btn-primary btn-lg answerbtn">Show Answer</a>
                               <p class="answerText"><%= oneCard.cardBack %></p>
                             </div>
                           </div>
 
                           <div class="inputContainer">
 
-                            <input type="text" class="difficultyInput" name="difficulty[<%= index %>][score]" value="">
+                            <input type="hidden" class="difficultyInput" name="difficulty[<%= index %>][score]" value="">
                             <input type="hidden" class="cardId" name="difficulty[<%= index %>][cardId]" value="<%= oneCard._id %>">
 
                             <!--
@@ -36,9 +36,12 @@
 
                             <div class="footer text-center cardFooter cardFooter<%=index%>">
                                 <div class="chart-legend">
-                                    <a class="btn btn-success btn-md testbtn1 testbtn">Easy</a>
-                                    <a class="btn btn-warning btn-md testbtn2 testbtn">Medium</a>
-                                    <a class="btn btn-danger btn-md testbtn3 testbtn">Hard</a>
+                                    <a class="btn btn-success btn-md testbtn5 testbtn">5</a>
+                                    <a class="btn btn-success btn-md testbtn4 testbtn">4</a>
+                                    <a class="btn btn-warning btn-md testbtn3 testbtn">3</a>
+                                    <a class="btn btn-warning btn-md testbtn2 testbtn">2</a>
+                                    <a class="btn btn-danger btn-md testbtn1 testbtn">1</a>
+                                    <a class="btn btn-danger btn-md testbtn0 testbtn">0</a>
                                 </div>
 
                                 <hr>
