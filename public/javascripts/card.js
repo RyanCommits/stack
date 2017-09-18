@@ -76,7 +76,7 @@ $(document).ready(function () {
         if(testPageDetect === i + 1) {
             $('.endTestTop').addClass('endVisible');
             $('.endTest').addClass('endVisible');
-            $('.memoForm').submit();
+            // $('.memoForm').submit();
           return;
         }
 
@@ -101,5 +101,16 @@ $(document).ready(function () {
 
   $('.privateSetting').click(function () {
     $(this).parent().submit();
+  });
+});
+
+// Submits Supermemo data
+
+$(document).ready(function () {
+  $('.saveQuit').click(function () {
+    $('.memoForm').submit();
+  });
+  $('.dashBtn').click(function () {
+    $('.memoForm').submit();
   });
 });

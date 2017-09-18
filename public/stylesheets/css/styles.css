@@ -1392,7 +1392,7 @@
 hr {
   margin-bottom: 0px;
 }
-.restartBtn{
+.restartBtn, .dashBtn{
   position: relative;
   margin-left: 10px;
   bottom: 1px;
@@ -1423,4 +1423,9 @@ hr {
 }
 .glyphicon-plus:hover {
   background-color: #5B9B9E;
+}
+.saveQuit {
+  position: absolute;
+  right: 20px;
+  bottom: 50px;
 }
