@@ -44,7 +44,9 @@ router.post('/dashboard/:stackId/delete', ensureLogin.ensureLoggedIn('/login'), 
 
 router.post('/dashboard/:stackId/shared', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
     StackModel.updateOne(
-      req.params.stackId,
+      {
+        _id: req.params.stackId
+      },
 
       {
         $set: {
@@ -67,7 +69,9 @@ router.post('/dashboard/:stackId/shared', ensureLogin.ensureLoggedIn('/login'), 
 
 router.post('/dashboard/:stackId/private', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
     StackModel.updateOne(
-      req.params.stackId,
+      {
+        _id: req.params.stackId
+      },
 
       {
         $set: {
@@ -152,7 +156,7 @@ router.post('/dashboard/:stackId', ensureLogin.ensureLoggedIn('/login'), (req, r
 
 router.post('/dashboard/:stackId/:cardId/delete', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
     StackModel.update(
-      { },
+      { _id: req.params.stackId },
       { $pull: { cards: { _id: req.params.cardId } } },
 
       (err, stackInfo) => {

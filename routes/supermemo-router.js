@@ -18,10 +18,15 @@ superMemo.getInterval();
             return;
         }
 
+
+console.log(req.body.difficulty);
   req.body.difficulty.forEach(function(formCard) {
       let eachCardId = formCard.cardId;
       let eqScore = formCard.score;
 
+      if (eqScore === '') {
+        return;
+      }
 
       stackInfo.cards.forEach(function(card) {
         if (card._id.toString() === eachCardId) {
@@ -48,6 +53,7 @@ superMemo.getInterval();
       next(err);
       return;
     }
+
 
       res.redirect('/dashboard/my-stacks');
   });
