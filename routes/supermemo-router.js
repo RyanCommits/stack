@@ -5,29 +5,37 @@ const ensureLogin = require("connect-ensure-login");
 
 const router = express.Router();
 
-router.post('/dashboard/my-stacks/:stackId/:cardId/test', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
+router.post('/dashboard/my-stacks/:stackId/test', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
 
-  const currentStack = req.params.stackId;
+  StackModel.findById(req.params.stackId,
 
-    StackModel.findById(
-      currentStack,
-
-      (err, oneStack) => {
-        // if there's a database error...
+    (err, stackInfo) => {
         if (err) {
-            // skip to the error handler middleware
             next(err);
-            // return to avoid showing the view
             return;
-
         }
 
-    res.locals.singleStack = oneStack;
-    res.locals.path = oneStack.stackName;
+  req.body.difficulty.forEach(function(formCard) {
+      let eachCardId = formCard.cardId;
+      let eqScore = formCard.score;
+      
 
-    res.render('dash-views/test.ejs', { layout: 'dashlayout.ejs' });
-
+      stackInfo.cards.forEach(function(card) {
+        if (card._id.toString() === eachCardId) {
+          card.ef = eqScore;
+        }
+      });
   });
+
+  stackInfo.save((err) => {
+    if(err) {
+      next(err);
+      return;
+    }
+
+      res.redirect('/dashboard/my-stacks');
+  });
+});
 });
 
 module.exports = router;

@@ -17,6 +17,23 @@ $(document).ready(function () {
   });
 });
 
+
+// User submits their difficulty recalling answers, saves to backend
+
+$(document).ready(function () {
+  $('.testbtn1').click(function () {
+    $(this).closest('.inputContainer').find('.difficultyInput').val(1);
+  });
+
+  $('.testbtn2').click(function () {
+    $(this).closest('.inputContainer').find('.difficultyInput').val(2);
+  });
+
+  $('.testbtn3').click(function () {
+    $(this).closest('.inputContainer').find('.difficultyInput').val(3);
+  });
+});
+
 // Populates test cards one by one
 
 $(document).ready(function () {
@@ -26,8 +43,8 @@ $(document).ready(function () {
 
   if (testPageDetect !== 0) {
 
-      $(`.prompt${i}`).addClass('cardVisible');
-      $(`.answer${i}`).addClass('cardVisible');
+      $(`.cardFooter${i}`).addClass('cardVisible');
+      $(`.ct-chart${i}`).addClass('cardVisible');
 
       // answer button function
 
@@ -40,22 +57,21 @@ $(document).ready(function () {
 
       $('.testbtn').click(function () {
 
-        $(`.prompt${i}`).removeClass('cardVisible');
-        $(`.answer${i}`).removeClass('cardVisible');
+        $(`.cardFooter${i}`).removeClass('cardVisible');
+        $(`.ct-chart${i}`).removeClass('cardVisible');
 
 // checks for end of test
 
         if(testPageDetect === i + 1) {
             $('.endTestTop').addClass('endVisible');
             $('.endTest').addClass('endVisible');
-            $('.cardFooter').addClass('hide');
-            $('.ct-chart').addClass('hide');
+            $('.memoForm').submit();
           return;
         }
 
         i++;
-        $(`.prompt${i}`).addClass('cardVisible');
-        $(`.answer${i}`).addClass('cardVisible');
+        $(`.cardFooter${i}`).addClass('cardVisible');
+        $(`.ct-chart${i}`).addClass('cardVisible');
         $('.cardCount').text(`${i+1} out of ${testPageDetect}`);
       });
 

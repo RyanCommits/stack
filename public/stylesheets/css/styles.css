@@ -1385,9 +1385,10 @@
 .answerText, .endTest{
   display: none;
 }
-.prompt, .answer, .endTestTop {
+.endTestTop, .cardFooter, .ct-chart{
   display: none;
 }
+
 hr {
   margin-bottom: 0px;
 }

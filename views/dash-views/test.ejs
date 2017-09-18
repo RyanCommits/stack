@@ -7,41 +7,55 @@
                         <h4 class="title"><%=path.charAt(0).toUpperCase() + path.slice(1)%></h4>
                         <hr />
                     </div>
-                    <div class="content text-center">
-                        <div id="chartHours" class="ct-chart">
+                    <form method="post" class="memoForm" action="/dashboard/my-stacks/<%= singleStack._id %>/test">
+                      <div class="content text-center">
                         <% singleStack.cards.forEach((oneCard, index) =>
                       { %>
-                          <div class="prompt prompt<%=index%>">
-                            <p class="promptText"><%= oneCard.cardFront %></p>
+                          <div id="chartHours" class="ct-chart ct-chart<%=index%>">
+                            <div class="prompt prompt<%=index%>">
+                              <p class="promptText"><%= oneCard.cardFront %></p>
+                            </div>
+                            <div class="answer answer<%=index%>">
+                              <button class="btn btn-primary btn-lg answerbtn">Show Answer</button>
+                              <p class="answerText"><%= oneCard.cardBack %></p>
+                            </div>
                           </div>
-                          <div class="answer answer<%=index%>">
-                            <button class="btn btn-primary btn-lg answerbtn">Show Answer</button>
-                            <p class="answerText"><%= oneCard.cardBack %></p>
-                          </div>
-                        </div>
-                        <form method="post" class="memoForm" action="/dashboard/<%= singleStack._id %>/<%= oneCard._id %>/test">
-                          <div class="footer text-center cardFooter">
-                              <div class="chart-legend">
-                                  <a class="btn btn-success btn-md testbtn">Easy</a>
-                                  <a class="btn btn-warning btn-md testbtn">Medium</a>
-                                  <a class="btn btn-danger btn-md testbtn">Hard</a>
-                              </div>
 
-                              <hr>
-                              <div class="stats">
-                                  <i class="ti-reload"></i> <span class="cardCount">1 out of 50</span>
-                              </div>
-                          </div>
-                        </form>
-                        <% }) %>
-                        <div class="endTestTop">
-                          <h3>Finish!</h3>
-                        </div>
-                        <div class="endTest">
-                          <a href="/dashboard/my-stacks" class="btn btn-primary btn-lg"><i class="ti-back-left"></i><span class="restartBtn">Dashboard</span></a>
-                          <button onClick="window.location.reload()" class="btn btn-success btn-lg"><i class="ti-reload"></i><span class="restartBtn">Restart</span></button>
-                        </div>
+                          <div class="inputContainer">
 
+                            <input type="text" class="difficultyInput" name="difficulty[<%= index %>][score]" value="">
+                            <input type="hidden" class="cardId" name="difficulty[<%= index %>][cardId]" value="<%= oneCard._id %>">
+
+                            <!--
+                            req.body.difficulty = [
+                              { score: 3, cardId: "aaaa" },
+                              { score: 1, cardId: "uuuuu" },
+                              { score: 3, cardId: "iiiiiiiii"}
+                            ]
+                            -->
+
+                            <div class="footer text-center cardFooter cardFooter<%=index%>">
+                                <div class="chart-legend">
+                                    <a class="btn btn-success btn-md testbtn1 testbtn">Easy</a>
+                                    <a class="btn btn-warning btn-md testbtn2 testbtn">Medium</a>
+                                    <a class="btn btn-danger btn-md testbtn3 testbtn">Hard</a>
+                                </div>
+
+                                <hr>
+                                <div class="stats">
+                                    <i class="ti-reload"></i> <span class="cardCount">1 out of 50</span>
+                                </div>
+                            </div>
+                          </div>
+                          <% }) %>
+                          <div class="endTestTop">
+                            <h3>Finish!</h3>
+                          </div>
+                          <div class="endTest">
+                            <a href="/dashboard/my-stacks" class="btn btn-primary btn-lg"><i class="ti-back-left"></i><span class="restartBtn">Dashboard</span></a>
+                            <button onClick="window.location.reload()" class="btn btn-success btn-lg"><i class="ti-reload"></i><span class="restartBtn">Restart</span></button>
+                          </div>
+                    </form>
                 </div>
             </div>
         </div>
