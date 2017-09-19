@@ -35,10 +35,8 @@
                                             <%  } else { %>
                                               <a href="/dashboard/my-stacks/<%= oneStack._id %>/test" class="btn btn-sm beginTest">Test All</a>
                                             <%  } %>
-                                            <% if (oneStack.cards.length === 0) { %>
-                                              <a href="/dashboard/my-stacks/<%= oneStack._id %>/" class="btn btn-sm beginTest">Add Cards</a>
-                                            <%  } else { %>
-                                              <a href="/dashboard/my-stacks/<%= oneStack._id %>/test" class="btn btn-sm beginTest">Test Due</a>
+                                            <% if (oneStack.cards.length !== 0) { %>
+                                              <a href="/dashboard/my-stacks/<%= oneStack._id %>/testdue" class="btn btn-sm beginTest">Test Due</a>
                                             <%  } %>
                                             <a href="/dashboard/my-stacks/<%= oneStack._id %>/" class="btn btn-success btn-sm">Edit Stack</a>
                                             <form method="post" action="/dashboard/<%=oneStack._id %>/delete">

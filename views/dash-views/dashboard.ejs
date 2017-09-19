@@ -1,1 +1,58 @@
-Hello!
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-sm-6">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <div class="icon-big icon-success text-center">
+                                    <i class="ti-timer"></i>
+                                </div>
+                            </div>
+                            <div class="col-xs-7">
+                                <div class="numbers">
+                                    <p>Cards Due</p>
+                                    10
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title">My Stacks</h4>
+                        </div>
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <table class="table table-hover">
+                                      <tbody>
+                                          <% allStacks.forEach((oneStack, index) => { %>
+                                            <tr>
+                                              <td class="col-md-10"><%= oneStack.stackName %></td>
+                                              <td>
+                                                <% if (oneStack.cards.length === 0) { %>
+                                                  <a href="/dashboard/my-stacks/<%= oneStack._id %>/" class="btn btn-sm beginTest">Add Cards</a>
+                                                <%  } else { %>
+                                                  <a href="/dashboard/my-stacks/<%= oneStack._id %>/test" class="btn btn-sm beginTest">Test All</a>
+                                                <%  } %>
+                                                <% if (oneStack.cards.length != 0) { %>
+                                                  <a href="/dashboard/my-stacks/<%= oneStack._id %>/testdue" class="btn btn-sm beginTest">Test Due</a>
+                                                <%  } %>
+                                              </td>
+                                            </tr>
+                                          <% }) %>
+                                      </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
