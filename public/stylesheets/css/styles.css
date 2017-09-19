@@ -1429,3 +1429,8 @@ hr {
   right: 20px;
   bottom: 50px;
 }
+/*table styles*/
+
+table {
+    word-wrap: break-word;
+}

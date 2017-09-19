@@ -15,8 +15,8 @@
                                       <th>#</th>
                                       <th>Stack Name</th>
                                       <th>Cards</th>
-                                      <th>Test</th>
-                                      <th>Settings</th>
+                                      <th>Due</th>
+                                      <th>Options</th>
                                       <th>Privacy</th>
                                     </tr>
                                   </thead>
@@ -24,17 +24,23 @@
                                       <% allStacks.forEach((oneStack, index) => { %>
                                         <tr>
                                           <th scope="row"><%= index + 1 %></th>
-                                          <td><%= oneStack.stackName %></td>
-                                          <td><%= oneStack.cards.length %></td>
-                                          <td>
-                                          <% if (oneStack.cards.length === 0) { %>
-                                            <a href="/dashboard/my-stacks/<%= oneStack._id %>/" class="btn btn-primary beginTest">Add Cards</a>
-                                      <%  } else { %>
-                                            <a href="/dashboard/my-stacks/<%= oneStack._id %>/test" class="btn btn-primary beginTest">Begin Test</a>
-                                      <%  } %>
+                                          <td class="col-md-2"><%= oneStack.stackName %></td>
+                                          <td class="col-md-1"><%= oneStack.cards.length %></td>
+                                          <td class="col-md-2">
+                                            <%=dueLength%>
                                           </td>
                                           <td>
-                                            <a href="/dashboard/my-stacks/<%= oneStack._id %>/" class="btn btn-success btn-sm">Edit Stack</a></li>
+                                            <% if (oneStack.cards.length === 0) { %>
+                                              <a href="/dashboard/my-stacks/<%= oneStack._id %>/" class="btn btn-sm beginTest">Add Cards</a>
+                                            <%  } else { %>
+                                              <a href="/dashboard/my-stacks/<%= oneStack._id %>/test" class="btn btn-sm beginTest">Test All</a>
+                                            <%  } %>
+                                            <% if (oneStack.cards.length === 0) { %>
+                                              <a href="/dashboard/my-stacks/<%= oneStack._id %>/" class="btn btn-sm beginTest">Add Cards</a>
+                                            <%  } else { %>
+                                              <a href="/dashboard/my-stacks/<%= oneStack._id %>/test" class="btn btn-sm beginTest">Test Due</a>
+                                            <%  } %>
+                                            <a href="/dashboard/my-stacks/<%= oneStack._id %>/" class="btn btn-success btn-sm">Edit Stack</a>
                                             <form method="post" action="/dashboard/<%=oneStack._id %>/delete">
                                               <button class="btn btn-danger btn-sm delete">Delete</button>
                                             </form>

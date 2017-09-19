@@ -13,6 +13,22 @@ router.get('/dashboard/home', ensureLogin.ensureLoggedIn('/login'), (req, res, n
 
 router.get('/dashboard/my-stacks', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
 
+// find all due stacks\
+
+  StackModel.find({}, {cards: {$elemMatch: {dueToday: true}}},
+
+    (err, dueList) => {
+
+      if (err) {
+          next(err);
+          return;
+      }
+
+      res.locals.dueLength = dueList;
+
+
+// find all Stacks
+
   StackModel.find(
 
     { user: req.user._id },
@@ -30,7 +46,9 @@ router.get('/dashboard/my-stacks', ensureLogin.ensureLoggedIn('/login'), (req, r
       res.locals.path = 'My Stacks';
 
       res.render('dash-views/my-stacks.ejs', { layout: 'dashlayout.ejs' });
-  });
+
+    });
+    });
 });
 
 router.get('/dashboard/profile', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
