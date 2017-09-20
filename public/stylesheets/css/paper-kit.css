@@ -200,10 +200,10 @@ body {
 }
 
 a {
-  color: #51bcda;
+  color: #3b5998;
 }
 a:hover, a:focus {
-  color: #2ba9cd;
+  color: #3b5998;
   text-decoration: none;
 }
 
@@ -2655,7 +2655,7 @@ textarea.form-control {
 .card-register {
   background-color: #D6D144;
   border-radius: 8px;
-  color: #fff;
+  color: #39332f;
   max-width: 350px;
   margin: 120px 0 70px;
   min-height: 400px;

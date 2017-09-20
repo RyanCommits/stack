@@ -27,7 +27,9 @@
                                           <td class="col-md-2"><%= oneStack.stackName %></td>
                                           <td class="col-md-1"><%= oneStack.cards.length %></td>
                                           <td class="col-md-2">
-                                            <%=dueLength%>
+
+                                            <%=obj[oneStack._id]%>
+
                                           </td>
                                           <td>
                                             <% if (oneStack.cards.length === 0) { %>
@@ -35,7 +37,7 @@
                                             <%  } else { %>
                                               <a href="/dashboard/my-stacks/<%= oneStack._id %>/test" class="btn btn-sm beginTest">Test All</a>
                                             <%  } %>
-                                            <% if (oneStack.cards.length !== 0) { %>
+                                            <% if (obj[oneStack._id] !== 0) { %>
                                               <a href="/dashboard/my-stacks/<%= oneStack._id %>/testdue" class="btn btn-sm beginTest">Test Due</a>
                                             <%  } %>
                                             <a href="/dashboard/my-stacks/<%= oneStack._id %>/" class="btn btn-success btn-sm">Edit Stack</a>

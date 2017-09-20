@@ -9,6 +9,11 @@ const userSchema = new Schema(
       required: true
     },
 
+    firstName: {
+      type: String,
+      required: true
+    },
+
     encryptedPassword: { type: String },
 
     facebookID: { type: String },

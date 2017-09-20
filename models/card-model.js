@@ -21,15 +21,16 @@ const cardSchema = new Schema({
       default: 1
     } ,
     dueDate: {
-      type: Date
+      type: Date,
+      default: Date.now()
     },
     nth: {
       type: Number,
       default: 1
     },
-    dueToday: {
+    dueAgain: {
       type: Boolean,
-      default: true
+      default: false
     }
 
 

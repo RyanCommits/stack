@@ -89,7 +89,8 @@ passport.use(
 
           const theUser = new UserModel({
             facebookID: profile.id,
-            email: 'profile.displayName'
+            email: 'null',
+            firstName: profile.displayName
           });
 
           theUser.save((err) => {

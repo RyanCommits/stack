@@ -9,49 +9,45 @@
                     </div>
                     <form method="post" class="memoForm" action="/dashboard/my-stacks/<%= singleStack._id %>/test">
                       <div class="content text-center">
-                        <% singleStack.cards.forEach((oneCard, index) =>
+                        <% let index = 0%>
+                        <% singleStack.cards.forEach((oneCard) =>
                       { %>
-                          <div id="chartHours" class="ct-chart ct-chart<%=index%>">
-                            <div class="prompt prompt<%=index%>">
-                              <p class="promptText"><%= oneCard.cardFront %></p>
+                        <% if (oneCard.dueAgain === true || Date.now() - oneCard.dueDate > 0) { %>
+                            <div id="chartHours" class="ct-chart ct-chart<%=index%>">
+                              <div class="prompt prompt<%=index%>">
+                                <p class="promptText"><%= oneCard.cardFront %></p>
+                              </div>
+                              <div class="answer answer<%=index%>">
+                                <a class="btn btn-primary btn-lg answerbtn">Show Answer</a>
+                                <p class="answerText"><%= oneCard.cardBack %></p>
+                              </div>
                             </div>
-                            <div class="answer answer<%=index%>">
-                              <a class="btn btn-primary btn-lg answerbtn">Show Answer</a>
-                              <p class="answerText"><%= oneCard.cardBack %></p>
+
+                            <div class="inputContainer">
+
+                              <input type="hidden" class="difficultyInput" name="difficulty[<%= index %>][score]">
+                              <input type="hidden" class="cardId" name="difficulty[<%= index %>][cardId]" value="<%= oneCard._id %>">
+
+                              <div class="footer text-center cardFooter cardFooter<%=index%>">
+                                  <div class="chart-legend container-fluid">
+                                      <a class="btn btn-success btn-md testbtn5 testbtn">5</a>
+                                      <a class="btn btn-success btn-md testbtn4 testbtn">4</a>
+                                      <a class="btn btn-warning btn-md testbtn3 testbtn">3</a>
+                                      <a class="btn btn-warning btn-md testbtn2 testbtn">2</a>
+                                      <a class="btn btn-danger btn-md testbtn1 testbtn">1</a>
+                                      <a class="btn btn-danger btn-md testbtn0 testbtn">0</a>
+                                      <a class="btn btn-danger btn-md saveQuit">Save and Quit</a>
+
+                                  </div>
+
+                                  <hr>
+                                  <div class="stats">
+                                      <i class="ti-reload"></i> <span class="cardCount"></span>
+                                  </div>
+                              </div>
                             </div>
-                          </div>
-
-                          <div class="inputContainer">
-
-                            <input type="hidden" class="difficultyInput" name="difficulty[<%= index %>][score]">
-                            <input type="hidden" class="cardId" name="difficulty[<%= index %>][cardId]" value="<%= oneCard._id %>">
-
-                            <!--
-                            req.body.difficulty = [
-                              { score: 3, cardId: "aaaa" },
-                              { score: 1, cardId: "uuuuu" },
-                              { score: 3, cardId: "iiiiiiiii"}
-                            ]
-                            -->
-
-                            <div class="footer text-center cardFooter cardFooter<%=index%>">
-                                <div class="chart-legend container-fluid">
-                                    <a class="btn btn-success btn-md testbtn5 testbtn">5</a>
-                                    <a class="btn btn-success btn-md testbtn4 testbtn">4</a>
-                                    <a class="btn btn-warning btn-md testbtn3 testbtn">3</a>
-                                    <a class="btn btn-warning btn-md testbtn2 testbtn">2</a>
-                                    <a class="btn btn-danger btn-md testbtn1 testbtn">1</a>
-                                    <a class="btn btn-danger btn-md testbtn0 testbtn">0</a>
-                                    <a class="btn btn-danger btn-md saveQuit">Save and Quit</a>
-
-                                </div>
-
-                                <hr>
-                                <div class="stats">
-                                    <i class="ti-reload"></i> <span class="cardCount"></span>
-                                </div>
-                            </div>
-                          </div>
+                            <% index++%>
+                          <%  } %>
                           <% }) %>
                           <div class="endTestTop">
                             <h3>Finish!</h3>

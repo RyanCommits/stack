@@ -18,6 +18,12 @@ router.post('/process-signup', (req, res, next) => {
     return;
   }
 
+  if (req.body.firstName === "") {
+    res.locals.feedbackMessage = "Please enter your first name.";
+    res.render('auth-views/signup-form.ejs');
+    return;
+  }
+
   UserModel.findOne(
     { email: req.body.signupEmail },
     (err, userFromDb) => {
@@ -37,7 +43,8 @@ router.post('/process-signup', (req, res, next) => {
 
       const theUser = new UserModel({
         email: req.body.signupEmail,
-        encryptedPassword: scrambledPass
+        encryptedPassword: scrambledPass,
+        firstName: req.body.firstName
       });
 
       theUser.save((err) => {

@@ -8,19 +8,41 @@ router.get('/dashboard/', (req, res, next) => {
 });
 
 router.get('/dashboard/home', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
-  // find all due stacks
 
-    StackModel.find({}, {cards: {$elemMatch: {dueToday: true}}},
 
-      (err, dueList) => {
+  StackModel.find(
 
-        if (err) {
-            next(err);
-            return;
-        }
+  (err, allStacks) => {
 
-        res.locals.dueLength = dueList;
+      if (err) {
+          next(err);
+          return;
+      }
 
+      var obj ={};
+
+      allStacks.forEach(stack => {
+        var count = 0;
+        stack.cards.forEach(card => {
+          if (Date.now() - card.dueDate < 0) {
+            count++;
+          }
+        });
+        obj[stack._id] = count;
+      });
+
+      /*var count = 0;
+
+      allStacks.forEach(stack => {
+
+        stack.cards.forEach(card => {
+          if (card.dueToday === true) {
+            count++;
+          }
+        });
+      });*/
+      res.locals.stacks = allStacks;
+      res.locals.obj = obj;
 
   // find all Stacks
 
@@ -48,18 +70,29 @@ router.get('/dashboard/home', ensureLogin.ensureLoggedIn('/login'), (req, res, n
 
 router.get('/dashboard/my-stacks', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
 
-// find all due stacks
+  StackModel.find(
 
-  StackModel.find({}, {cards: {$elemMatch: {dueToday: true}}},
-
-    (err, dueList) => {
+  (err, allStacks) => {
 
       if (err) {
           next(err);
           return;
       }
 
-      res.locals.dueLength = dueList;
+      var obj ={};
+
+      allStacks.forEach(stack => {
+        var count = 0;
+        stack.cards.forEach(card => {
+          if (Date.now() - card.dueDate > 0 || card.dueAgain === true) {
+            count++;
+          }
+        });
+        obj[stack._id] = count;
+      });
+
+      res.locals.stacks = allStacks;
+      res.locals.obj = obj;
 
 
 // find all Stacks

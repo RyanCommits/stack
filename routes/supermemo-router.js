@@ -18,8 +18,6 @@ superMemo.getInterval();
             return;
         }
 
-
-console.log(req.body.difficulty);
   req.body.difficulty.forEach(function(formCard) {
       let eachCardId = formCard.cardId;
       let eqScore = formCard.score;
@@ -29,23 +27,28 @@ console.log(req.body.difficulty);
       }
 
       stackInfo.cards.forEach(function(card) {
+
         if (card._id.toString() === eachCardId) {
 
           var newEf = superMemo.getEf(card.ef, eqScore);
-          card.ef = newEf;
 
           var newMemo = superMemo.getInterval(newEf, card.interval, card.nth, eqScore);
 
-          card.nth = newMemo.n;
-          card.dueToday = newMemo.dueToday;
-          card.interval = newMemo.int;
+// if the score is 3, just make it due again, don't change stats
+// if the score is 4 or higher but was a repeat test on same day, do not change stats
 
-          const now = new Date();
-          const due = new Date().setDate(now.getDate() + newMemo.int);
-
-          card.dueDate = new Date(due);
+          if (card.dueAgain === true && eqScore >= 3) {
+            card.dueAgain = newMemo.dueAgain;
+          } else {
+            card.ef = newEf;
+            card.nth = newMemo.n;
+            card.dueAgain = newMemo.dueAgain;
+            card.interval = newMemo.int;
+          // stores due date in milliseconds
+            card.dueDate = Date.now() + (newMemo.int * 86400000);
+          }
         }
-      });
+    });
   });
 
   stackInfo.save((err) => {
