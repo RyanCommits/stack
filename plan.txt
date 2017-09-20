@@ -2,10 +2,8 @@ Big picture:
 
 Flash cards that show based on spaced repetition, algorthim: SuperMemo https://www.supermemo.com/english/ol/sm2.htm
 
-User Flow:
+add tooltips to due test
 
-Due function that changes time with each response.
+profile settings
 
-Add username to each user. Or first name.
-
-Public stacks and all stacks
+add public stack to private
