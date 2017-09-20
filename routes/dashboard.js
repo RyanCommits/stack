@@ -24,23 +24,13 @@ router.get('/dashboard/home', ensureLogin.ensureLoggedIn('/login'), (req, res, n
       allStacks.forEach(stack => {
         var count = 0;
         stack.cards.forEach(card => {
-          if (Date.now() - card.dueDate < 0) {
+          if (Date.now() - card.dueDate > 0 || card.dueAgain === true) {
             count++;
           }
         });
         obj[stack._id] = count;
       });
 
-      /*var count = 0;
-
-      allStacks.forEach(stack => {
-
-        stack.cards.forEach(card => {
-          if (card.dueToday === true) {
-            count++;
-          }
-        });
-      });*/
       res.locals.stacks = allStacks;
       res.locals.obj = obj;
 

@@ -58,7 +58,7 @@ superMemo.getInterval();
     }
 
 
-      res.redirect('/dashboard/my-stacks');
+      res.redirect('/dashboard/home');
   });
 });
 });

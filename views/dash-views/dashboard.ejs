@@ -12,8 +12,13 @@
                             </div>
                             <div class="col-xs-7">
                                 <div class="numbers">
-                                    <p>Cards Due</p>
-                                    10
+                                    <p>Total Cards Due</p>
+                                    <% let dueCount = 0 %>
+                                    <% allStacks.forEach((oneStack, index) => { %>
+                                      <% dueCount += obj[oneStack._id]%>
+                                    <%  }) %>
+
+                                    <%=dueCount%>
                                 </div>
                             </div>
                         </div>
@@ -34,14 +39,26 @@
                                       <tbody>
                                           <% allStacks.forEach((oneStack, index) => { %>
                                             <tr>
-                                              <td class="col-md-10"><%= oneStack.stackName %></td>
-                                              <td>
+                                              <td class="col-md-3">
+                                                <b><%= oneStack.stackName %></b>
+                                              </td>
+                                              <td class="col-md-3">
+                                                Stack Size: <%= oneStack.cards.length %>
+                                              </td>
+                                              <td class="col-md-3">
+                                                <% if (obj[oneStack._id] === 0) { %>
+                                                  No Cards Due
+                                                <%  } else { %>
+                                                  Cards Due: <%=obj[oneStack._id]%>
+                                                <%  } %>
+                                              </td>
+                                              <td class="col-md-3">
                                                 <% if (oneStack.cards.length === 0) { %>
                                                   <a href="/dashboard/my-stacks/<%= oneStack._id %>/" class="btn btn-sm beginTest">Add Cards</a>
                                                 <%  } else { %>
-                                                  <a href="/dashboard/my-stacks/<%= oneStack._id %>/test" class="btn btn-sm beginTest">Test All</a>
+                                                  <a href="/dashboard/my-stacks/<%= oneStack._id %>/test" class="btn btn-sm beginTest">Test Whole Stack</a>
                                                 <%  } %>
-                                                <% if (oneStack.cards.length != 0) { %>
+                                                <% if (obj[oneStack._id] !== 0) { %>
                                                   <a href="/dashboard/my-stacks/<%= oneStack._id %>/testdue" class="btn btn-sm beginTest">Test Due</a>
                                                 <%  } %>
                                               </td>
