@@ -29,17 +29,27 @@
 
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="header">
-                            <h4 class="title">My Stacks</h4>
+                            <% if (allStacks.length === 0) { %>
+                              <div class="header text-center">
+                                <p>Welcome</p>
+                            <%  } else { %>
+                              <div class="header">
+                              <h4 class="title">My Stacks</h4>
+                            <%  } %>
                         </div>
                         <div class="content">
                             <div class="row">
-                                <div class="col-md-12">
+                                <% if (allStacks.length === 0) { %>
+                                    <div class="col-md-12 text-center">
+                                      <h3>Create Your First Stack</h3>
+                                      <a href="/dashboard/my-stacks" class="btn btn-primary btn-lg">Get Started</a>
+                                <%  } else { %>
+                                  <div class="col-md-12">
                                     <table class="table table-hover">
                                       <tbody>
                                           <% allStacks.forEach((oneStack, index) => { %>
                                             <tr>
-                                              <td class="col-md-3">
+                                              <td class="big-col">
                                                 <b><%= oneStack.stackName %></b>
                                               </td>
                                               <td class="col-md-3">
@@ -66,6 +76,7 @@
                                           <% }) %>
                                       </tbody>
                                     </table>
+                                    <%  } %>
                                 </div>
                             </div>
                         </div>

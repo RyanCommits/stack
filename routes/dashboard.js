@@ -1,6 +1,7 @@
 const express = require('express');
 const StackModel = require('../models/stack-model.js');
 const ensureLogin = require("connect-ensure-login");
+const UserModel = require('../models/user-model.js');
 const router  = express.Router();
 
 router.get('/dashboard/', (req, res, next) => {
@@ -170,9 +171,7 @@ router.get('/dashboard/my-stacks/:stackId/testdue', ensureLogin.ensureLoggedIn('
 
 router.get('/dashboard/public-stacks', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
 
-  StackModel.find(
-
-    { shared: 'true' },
+  StackModel.find({ shared: 'true' }).populate('user').exec(
 
     (err, stackList) => {
 
@@ -180,6 +179,8 @@ router.get('/dashboard/public-stacks', ensureLogin.ensureLoggedIn('/login'), (re
           next(err);
           return;
       }
+
+
 
       // send the results to the view
       res.locals.allStacks = stackList;

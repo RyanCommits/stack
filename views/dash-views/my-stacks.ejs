@@ -12,18 +12,18 @@
                                 <table class="table table-hover">
                                   <thead>
                                     <tr>
-                                      <th>#</th>
-                                      <th>Stack Name</th>
-                                      <th>Cards</th>
-                                      <th>Due</th>
-                                      <th>Options</th>
+                                      <th class="sm-col">#</th>
+                                      <th class="big-col">Stack Name</th>
+                                      <th class="sm-col">Cards</th>
+                                      <th class="sm-col">Due</th>
+                                      <th class="big-col">Options</th>
                                       <th>Privacy</th>
                                     </tr>
                                   </thead>
                                   <tbody>
                                       <% allStacks.forEach((oneStack, index) => { %>
                                         <tr>
-                                          <th scope="row"><%= index + 1 %></th>
+                                        <th scope="row"><%= index + 1 %></th>
                                           <td class="col-md-2"><%= oneStack.stackName %></td>
                                           <td class="col-md-1"><%= oneStack.cards.length %></td>
                                           <td class="col-md-2">
@@ -70,7 +70,7 @@
                                                           <span class="sharedSetting">Shared (read-only)</span>
                                                         </form>
                                                       </li>
-                                                      <li>Shared (editable)</li>
+                                                    
                                                   </ul>
                                               </a>
                                             </div>
