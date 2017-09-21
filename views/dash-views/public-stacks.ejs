@@ -15,7 +15,7 @@
                                       <th class="sm-col">#</th>
                                       <th>Stack Name</th>
                                       <th>Cards</th>
-                                      <th>Test</th>
+                                      <th>Copy</th>
                                       <th>Created By</th>
                                     </tr>
                                   </thead>
@@ -28,10 +28,9 @@
                                           <td><%= oneStack.cards.length %></td>
                                           <td>
 
-                                            <a href="/dashboard/my-stacks/<%= oneStack._id %>/test" class="btn btn-primary beginTest">Begin Test</a>
+                                            <a href="/dashboard/<%= oneStack._id %>/copy" class="btn btn-primary beginTest">Copy Stack</a>
 
                                           </td>
-                                          <%console.log(oneStack)%>
                                           <td><%=oneStack.user.firstName%></td>
                                         </tr>
                                         <%  } %>

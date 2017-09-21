@@ -3,6 +3,4 @@ Big picture:
 Flash cards that show based on spaced repetition, algorthim: SuperMemo https://www.supermemo.com/english/ol/sm2.htm
 
 
-profile settings
-
 add public stack to private

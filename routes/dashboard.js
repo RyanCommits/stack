@@ -2,6 +2,7 @@ const express = require('express');
 const StackModel = require('../models/stack-model.js');
 const ensureLogin = require("connect-ensure-login");
 const UserModel = require('../models/user-model.js');
+const mongoose   = require('mongoose');
 const router  = express.Router();
 
 router.get('/dashboard/', (req, res, next) => {
@@ -230,6 +231,62 @@ router.get('/dashboard/public-stacks', ensureLogin.ensureLoggedIn('/login'), (re
 
       res.render('dash-views/public-stacks.ejs', { layout: 'dashlayout.ejs' });
 
+  });
+});
+
+router.get('/dashboard/:stackId/copy', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
+
+  const currentStack = req.params.stackId;
+
+// find Stack to be copied
+
+  StackModel.findOne(
+
+    { _id: req.params.stackId },
+
+    (err, stackToCopy) => {
+
+      if (err) {
+          next(err);
+          return;
+      }
+
+// create new object with same properties, except changing user and id.
+
+      let newStack = Object.assign({}, stackToCopy);
+      newStack._doc.user = req.user._id;
+      newStack._doc._id = mongoose.Types.ObjectId();
+      newStack.isNew = true;
+
+// save new object in a new model
+
+      const copiedStack = new StackModel({
+        stackName: newStack._doc.stackName,
+        cards: newStack._doc.cards,
+        user: req.user._id,
+        shared: 'false'
+      });
+
+// reset all card supermemo data
+
+      copiedStack.cards.forEach(card => {
+        card.ef = 2.5;
+        card.interval = 1;
+        card.dueDate = Date.now();
+        card.nth = 1;
+        card.dueAgain = false;
+      });
+
+// save the model
+
+      copiedStack.save((err) => {
+        if (err) {
+          next(err);
+          return;
+        }
+
+      res.redirect('/dashboard/public-stacks');
+      });
   });
 });
 
