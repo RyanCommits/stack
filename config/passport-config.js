@@ -89,7 +89,7 @@ passport.use(
 
           const theUser = new UserModel({
             facebookID: profile.id,
-            email: 'null',
+            email: 'facebook',
             firstName: profile.displayName
           });
 

@@ -110,9 +110,53 @@ router.get('/dashboard/my-stacks', ensureLogin.ensureLoggedIn('/login'), (req, r
     });
 });
 
+// profile page
+
 router.get('/dashboard/profile', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
-  res.locals.path = 'Profile';
   res.render('dash-views/profile.ejs', { layout: 'dashlayout.ejs' });
+});
+
+// Change profile information
+
+router.post('/dashboard/profile/edit', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
+
+  UserModel.updateOne(
+    {_id: req.user.id },
+
+    {
+      $set: {
+        email: req.body.emailChange,
+        firstName: req.body.nameChange
+        }
+      },
+
+    (err, currentUser) => {
+
+      if (err) {
+          next(err);
+          return;
+      }
+
+      res.redirect('/dashboard/profile');
+  });
+});
+
+// delete account
+
+router.post('/dashboard/profile/delete', ensureLogin.ensureLoggedIn('/login'), (req, res, next) => {
+
+  UserModel.findByIdAndRemove(
+    {_id: req.user.id },
+
+    (err, user) => {
+        if (err) {
+            next(err);
+            return;
+        }
+
+    res.redirect('/');
+    }
+  );
 });
 
 // test all cards
@@ -125,11 +169,8 @@ router.get('/dashboard/my-stacks/:stackId/test', ensureLogin.ensureLoggedIn('/lo
       currentStack,
 
       (err, oneStack) => {
-        // if there's a database error...
         if (err) {
-            // skip to the error handler middleware
             next(err);
-            // return to avoid showing the view
             return;
 
         }

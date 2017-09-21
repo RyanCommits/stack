@@ -1455,3 +1455,6 @@ td {
    white-space: -o-pre-wrap;   /* Opera 7 */
    word-wrap: break-word;      /* IE */
 }
+#deleteButton {
+  margin-top: 20px;
+}
