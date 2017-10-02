@@ -1,6 +1,6 @@
 # Stack
 
-[Start The App](http://ironhack-stack.herokuapp.com/)
+[Start The App](https://ironhack-stack.herokuapp.com/)
 
 Stack is a flashcard app that uses the SuperMemo algorithm and spaced repetition learning techniques to boost your memory and help you retain information, indefinitely.
 
